@@ -16,6 +16,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/api', employeeRoutes);
 
+// Tell Express where to find the views
+app.set('views', path.join(__dirname, 'views'));
+
 // UI Endpoint
 app.get('/', (req, res) => res.render('index'));
 
