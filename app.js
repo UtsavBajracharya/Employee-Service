@@ -13,6 +13,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// In-memory JSON array for employee data
+const employees = [];
+
 // Routes
 app.use('/api', employeeRoutes);
 
@@ -20,7 +23,30 @@ app.use('/api', employeeRoutes);
 app.set('views', path.join(__dirname, 'views'));
 
 // UI Endpoint
-app.get('/', (req, res) => res.render('index'));
+app.get('/', (req, res) => {
+    res.render('index', { employees }); // Pass employee data to the view
+});
+
+app.post('/add-employee', (req, res) => {
+    const { firstName, lastName, id, salary, department, email } = req.body;
+  
+    // Check if employee exists
+    const existingEmployee = employees.find((emp) => emp.id === id);
+  
+    if (existingEmployee) {
+      // Update existing employee
+      existingEmployee.firstName = firstName;
+      existingEmployee.lastName = lastName;
+      existingEmployee.salary = salary;
+      existingEmployee.department = department;
+      existingEmployee.email = email;
+    } else {
+      // Add new employee
+      employees.push({ firstName, lastName, id, salary, department, email });
+    }
+  
+    res.redirect('/'); // Reload the page after adding/updating
+  });
 
 // Add port
 const PORT = 3000;

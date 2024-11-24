@@ -1,34 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Employee List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Service</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <h1>Employee List</h1>
+
+  <!-- Form to Add/Update Employee -->
   <form action="/add-employee" method="POST">
-    <!-- Form fields for firstName, lastName, id, salary, department, email -->
-    <button type="submit">Add Employee</button>
+    <input type="text" name="id" placeholder="ID" required>
+    <input type="text" name="firstName" placeholder="First Name" required>
+    <input type="text" name="lastName" placeholder="Last Name" required>
+    <input type="text" name="salary" placeholder="Salary" required>
+    <input type="text" name="department" placeholder="Department" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <button type="submit">Add/Update Employee</button>
   </form>
-  
+
+  <!-- Employee Table -->
   <table border="1">
-    <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Salary</th>
-      <th>Department</th>
-      <th>Email</th>
-    </tr>
-    <% employees.forEach((employee) => { %>
+    <thead>
       <tr>
-        <td><%= employee.id %></td>
-        <td><%= employee.firstName %></td>
-        <td><%= employee.lastName %></td>
-        <td><%= employee.salary %></td>
-        <td><%= employee.department %></td>
-        <td><%= employee.email %></td>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th>Email</th>
       </tr>
-    <% }); %>
+    </thead>
+    <tbody>
+      <% employees.forEach(employee => { %>
+        <tr>
+          <td><%= employee.id %></td>
+          <td><%= employee.firstName %></td>
+          <td><%= employee.lastName %></td>
+          <td><%= employee.salary %></td>
+          <td><%= employee.department %></td>
+          <td><%= employee.email %></td>
+        </tr>
+      <% }); %>
+    </tbody>
   </table>
 </body>
 </html>
