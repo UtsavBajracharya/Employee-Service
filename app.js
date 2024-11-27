@@ -21,9 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use Routes
 app.use('/api', employeeRoutes);
 
+
 // Home Route (Frontend)
 app.get('/', (req, res) => {
-    res.render('index');
+  // Fetch employee data (for now from memory)
+  const employees = require('./routes/employeeRoutes').employees; // Get employee data
+  res.render('index', { employees });
 });
 
 // Start Server

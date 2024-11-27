@@ -3,7 +3,7 @@ const tableBody = document.querySelector('#employeeTable tbody');
 const submitButton = document.getElementById('submitButton');
 const updateButton = document.getElementById('updateButton');
 
-let selectedEmployeeId = null; // To track employee being updated
+let selectedEmployeeId = null; // To check employee being updated
 
 // Fetch and display employees
 async function fetchEmployees() {
