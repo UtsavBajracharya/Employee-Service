@@ -1,18 +1,19 @@
 const form = document.getElementById('employeeForm');
-const employeeList = document.getElementById('employeeList');
+const employeeList = document.querySelector('tbody');
 
 // Fetch and display employees
 const fetchEmployees = async () => {
   const response = await fetch('/api/employees');
   const employees = await response.json();
   employeeList.innerHTML = employees.map(emp => `
-    <div>
-      <p>${emp.firstName} ${emp.lastName}</p>
-      <p>ID: ${emp.id}</p>
-      <p>Salary: ${emp.salary}</p>
-      <p>Department: ${emp.working_department}</p>
-      <p>Email: ${emp.email}</p>
-    </div>
+    <tr>
+      <td>${emp.id}</td>
+      <td>${emp.firstName}</td>
+      <td>${emp.lastName}</td>
+      <td>${emp.salary}</td>
+      <td>${emp.working_department}</td>
+      <td>${emp.email}</td>
+    </tr>
   `).join('');
 };
 

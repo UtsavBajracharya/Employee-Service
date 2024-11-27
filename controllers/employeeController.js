@@ -11,5 +11,5 @@ exports.addOrUpdateEmployee = (req, res) => {
   }
   const newEmployee = { id, firstName, lastName, salary, working_department, email };
   EmployeeModel.addOrUpdateEmployee(newEmployee);
-  res.status(200).json({ message: 'Employee added/updated successfully.' });
+  rres.redirect('/'); // Reload the UI after the update
 };
